@@ -31,28 +31,28 @@
 
 (define-innermode poly-python-sql-triple-double-quote-innermode
   :mode 'sql-mode
-  :head-matcher (cons "[^\\]\\(\"\"\"\\)[[:space:]\r\n]*\\(SELECT\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
+  :head-matcher (cons "[^\\]\\(\"\"\"\\)[[:space:]\r\n]*\\(SELECT\\|WITH\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
   :tail-matcher (cons "[^\\]\\(\"\"\"\\)" 1)
   :head-mode 'host
   :tail-mode 'host)
 
 (define-innermode poly-python-sql-single-double-quote-innermode
   :mode 'sql-mode
-  :head-matcher (cons "[^\\]\\(\"\\)[ \t\f\v]*\\(SELECT\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
+  :head-matcher (cons "[^\\]\\(\"\\)[ \t\f\v]*\\(SELECT\\|WITH\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
   :tail-matcher (cons "[^\\]\\(\"\\)" 1)
   :head-mode 'host
   :tail-mode 'host)
 
 (define-innermode poly-python-sql-triple-single-quote-innermode
   :mode 'sql-mode
-  :head-matcher (cons "[^\\]\\('''\\)[[:space:]\r\n]*\\(SELECT\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
+  :head-matcher (cons "[^\\]\\('''\\)[[:space:]\r\n]*\\(SELECT\\|WITH\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
   :tail-matcher (cons "[^\\]\\('''\\)" 1)
   :head-mode 'host
   :tail-mode 'host)
 
 (define-innermode poly-python-sql-single-single-quote-innermode
   :mode 'sql-mode
-  :head-matcher (cons "[^\\]\\('\\)[ \t\f\v]*\\(SELECT\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
+  :head-matcher (cons "[^\\]\\('\\)[ \t\f\v]*\\(SELECT\\|WITH\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
   :tail-matcher (cons "[^\\]\\('\\)" 1)
   :head-mode 'host
   :tail-mode 'host)
@@ -72,14 +72,14 @@
 
   (define-innermode poly-php-sql-double-quote-innermode
     :mode 'sql-mode
-    :head-matcher (cons "[^\\]\\(\"\\)[[:space:]]*\\(SELECT\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
+    :head-matcher (cons "[^\\]\\(\"\\)[[:space:]]*\\(SELECT\\|WITH\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
     :tail-matcher (cons "[^\\]\\(\"\\)" 1)
     :head-mode 'host
     :tail-mode 'host)
 
   (define-innermode poly-php-sql-single-quote-innermode
     :mode 'sql-mode
-    :head-matcher (cons "[^\\]\\('\\)[[:space:]]*\\(SELECT\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
+    :head-matcher (cons "[^\\]\\('\\)[[:space:]]*\\(SELECT\\|WITH\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)" 1)
     :tail-matcher (cons "[^\\]\\('\\)" 1)
     :head-mode 'host
     :tail-mode 'host)
@@ -87,7 +87,7 @@
   (defvar poly-php--heredoc-tag nil)
 
   (defun poly-php--heredoc-head-match (ahead)
-    (let ((matcher "\\(<<<[ \t\f]*\\('\\([[:alpha:]_][[:alpha:]]+\\)'\\|\\([[:alpha:]_][[:alnum:]_]+\\)\\)[ \t\f\v]*[\r]?[\n]\\)[[:space:]]*\\(SELECT\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)"))
+    (let ((matcher "\\(<<<[ \t\f]*\\('\\([[:alpha:]_][[:alpha:]]+\\)'\\|\\([[:alpha:]_][[:alnum:]_]+\\)\\)[ \t\f\v]*[\r]?[\n]\\)[[:space:]]*\\(SELECT\\|WITH\\|INSERT\\|UPDATE\\|DELETE\\|CREATE\\)"))
       (setq poly-php--heredoc-tag nil)
       (if (< ahead 0)
           (when (re-search-backward matcher nil t)
